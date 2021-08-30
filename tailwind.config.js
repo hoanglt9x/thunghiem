@@ -10,6 +10,7 @@ module.exports = {
         warning: "#FA7D09",
         info: "#1597BB",
         dangder: "#DA0037",
+        "dark-light": "#DDDDDD",
       },
     },
   },
