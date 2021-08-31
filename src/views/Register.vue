@@ -10,6 +10,7 @@
             type="text"
             class="px-4 py-3 rounded-lg border border-gray-100 mt-1 w-full"
             placeholder="Lưu Tuấn Hoàng"
+            v-model="fullName"
           />
         </div>
         <!-- //Todo: Giao dien Email -->
@@ -21,6 +22,7 @@
             autocomplete="username"
             class="px-4 py-3 rounded-lg border border-gray-100 mt-1 w-full"
             placeholder="hoanglt.gis@gmail.com"
+            v-model="email"
           />
         </div>
         <!-- //Todo: Giao dien password -->
@@ -32,6 +34,7 @@
             autocomplete="password"
             class="px-4 py-3 rounded-lg border border-gray-100 mt-1 w-full"
             placeholder="Mật khẩu"
+            v-model="passWord"
           />
         </div>
         <div class="row">
@@ -70,10 +73,19 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { useSignUp } from "@/composables/useSignUp";
 export default {
   setup() {
-    function onSubmit() {}
-    return { onSubmit };
+    const { error, isPending, signup } = useSignUp();
+    const fullName = ref("");
+    const email = ref("");
+    const passWord = ref("");
+    async function onSubmit() {
+      await signup(email.value, passWord.value);
+    }
+    // return { fullName, email, passWord, error, isPending, onSubmit };
+    return { fullName, email, passWord, error, isPending, onSubmit };
   },
 };
 </script>
